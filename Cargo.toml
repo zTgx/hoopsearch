@@ -1,5 +1,5 @@
 [package]
-name = "kDB"
+name = "kdb"
 version = "0.1.0"
 authors = ["ztgx"]
 edition = "2018"
