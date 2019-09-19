@@ -10,6 +10,7 @@ build = "build.rs"
 [dependencies]
 lmdb-zero = "0.4.4"
 grpcio = "0.4"
+raft = "0.6.0-alpha"
 
 [dependencies.rocksdb]
 git = "https://github.com/pingcap/rust-rocksdb.git"
