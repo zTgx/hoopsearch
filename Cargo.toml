@@ -1,19 +1,14 @@
 [package]
 name = "kdb"
-version = "0.1.0"
-authors = ["ztgx"]
+version = "0.0.1"
+authors = ["zTgx <beautifularea@163.com>"]
+repository = "https://github.com/zTgx/hoopsearch.git"
+readme = "README.md"
+license = "MIT"
 edition = "2018"
-build = "build.rs"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-lmdb-zero = "0.4.4"
-grpcio = "0.4"
 raft = "0.6.0-alpha"
-
-[dependencies.rocksdb]
-git = "https://github.com/pingcap/rust-rocksdb.git"
+rocksdb = "0.14.0"
 
 [build-dependencies]
-protoc-grpcio = "1.0.2"
