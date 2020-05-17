@@ -22,14 +22,14 @@ pub struct IndexCreateRequest {
 
 // 创建index接口
 // 参数: IndexCreateRequest
-pub async fn create_index() -> Result<HttpResponse, ResponseError> {
-    // pub async fn create_index(body: web::Json<IndexCreateRequest>) -> Result<HttpResponse, ResponseError> {
-    info!("创建 index 参数: {:?}", "BODY");
+// pub async fn create_index() -> Result<HttpResponse, ResponseError> {
+pub async fn create_index(body: web::Json<IndexCreateRequest>) -> Result<HttpResponse, ResponseError> {
+    info!("创建 index 参数: {:?}", body);
 
     // uid 和 name 不能都为空
-    // if let (None, None) = (body.name.clone(), body.uid.clone()) {
-    //     return Err(ResponseError::bad_request("Index的uid参数不能为空"));
-    // }
+    if let (None, None) = (body.name.clone(), body.uid.clone()) {
+        return Err(ResponseError::bad_request("Index的uid参数不能为空"));
+    }
 
 
 
