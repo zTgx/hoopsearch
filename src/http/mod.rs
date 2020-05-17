@@ -13,9 +13,7 @@ pub async fn router() -> io::Result<()> {
 
     HttpServer::new(move || 
         App::new()
-        .wrap(Cors::new() // allowed_origin return access-control-allow-origin: * by default
-        .supports_credentials()
-        .finish())
+        .wrap(Cors::new().supports_credentials().finish())
         .wrap(middleware::Logger::default())
         .wrap(middleware::Compress::default())
         .configure(routers::indexes_services)
