@@ -1,10 +1,10 @@
 pub mod routers;
-// pub mod error;
+pub mod error;
 pub mod response;
 
 use std::{io, env};
 use actix_cors::Cors;
-use actix_web::{App, HttpServer, middleware};
+use actix_web::{web, App, HttpServer, middleware};
 
 pub async fn router() -> io::Result<()> {
     let app_host = env::var("APP_HOST").expect("APP_HOST not found.");
@@ -16,7 +16,9 @@ pub async fn router() -> io::Result<()> {
         .wrap(Cors::new().supports_credentials().finish())
         .wrap(middleware::Logger::default())
         .wrap(middleware::Compress::default())
-        .configure(routers::indexes_services)
+        .service(
+            web::scope("/api/v1").configure(routers::indexes_services)
+        )
     )
     .bind(&app_url)?
     .run()
