@@ -4,6 +4,7 @@ use chrono::{DateTime, Utc};
 
 use crate::http::response::ResponseBody;
 use crate::http::error::ResponseError;
+use crate::http::data::Data;
 
 pub async fn get_indexes() -> Result<HttpResponse> {
     Ok(HttpResponse::Ok().json(ResponseBody::new(222, "OK", "get_indexes")))
@@ -33,7 +34,7 @@ struct IndexResponse {
 // 创建index接口
 // 参数: IndexCreateRequest
 // pub async fn create_index() -> Result<HttpResponse, ResponseError> {
-pub async fn create_index(body: web::Json<IndexCreateRequest>) -> Result<HttpResponse, ResponseError> {
+pub async fn create_index(data: web::Data<Data>, body: web::Json<IndexCreateRequest>) -> Result<HttpResponse, ResponseError> {
     info!("创建 index 参数: {:?}", body);
 
     // uid 和 name 不能都为空
@@ -70,17 +71,22 @@ pub async fn create_index(body: web::Json<IndexCreateRequest>) -> Result<HttpRes
     // primary_key
     let primary_key = None;
 
-    Ok(
-        HttpResponse::Ok().json(
-            IndexResponse {
-                name: name.to_string(),
-                uid,
-                created_at,
-                updated_at,
-                primary_key,
-            }
-        )
-    )
+    match data.db.create_index(&uid) {
+        Ok(_) => {
+            Ok(
+                HttpResponse::Ok().json(
+                    IndexResponse {
+                        name: name.to_string(),
+                        uid,
+                        created_at,
+                        updated_at,
+                        primary_key,
+                    }
+                )
+            )        
+        }
+        Err(err) => Err(ResponseError::bad_request(err))
+    }
 }
 
 pub async fn update_index() -> Result<HttpResponse> {
