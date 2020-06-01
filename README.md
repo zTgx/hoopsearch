@@ -9,3 +9,4 @@
 * [MeiliSearch](https://github.com/meilisearch/MeiliSearch)
 * [typesense](https://github.com/typesense/typesense.git)
 * [elasticsearch](https://github.com/elastic/elasticsearch)
+* [tantivy](https://github.com/tantivy-search/tantivy)
