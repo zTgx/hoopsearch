@@ -12,6 +12,7 @@ extern crate serde_json;
 use log::info;
 
 mod core;
+mod parsing;
 mod http;
 
 #[actix_rt::main]
