@@ -23,7 +23,7 @@ pub async fn router() -> io::Result<()> {
         .wrap(middleware::Logger::default())
         .wrap(middleware::Compress::default())
         .service(
-            web::scope("/api/v1").configure(routers::indexes_services)
+            web::scope("/api/v1").configure(routers::services)
         )
     )
     .bind(&app_url)?

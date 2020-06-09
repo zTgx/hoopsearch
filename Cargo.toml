@@ -8,8 +8,6 @@ license = "MIT"
 edition = "2018"
 
 [dependencies]
-raft = "0.6.0-alpha"
-rocksdb = "0.14.0"
 clap = {version = "2.33", features = ["yaml"]}
 log = "0.4.8"
 env_logger = "0.7.1"
@@ -24,5 +22,11 @@ dotenv = "0.15.0"
 chrono = { version = "0.4.11", features = ["serde"] }
 bytes = { version = "0.5", features = ["serde"] }
 jieba-rs = "0.5"
+
+image = "0.23.4"
+curl = "0.4.29"
+
+[dependencies.img_hash]
+version = "3.0"
 
 [build-dependencies]
