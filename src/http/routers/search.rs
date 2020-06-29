@@ -38,7 +38,7 @@ pub async fn search(_data: web::Data<Data>, body: web::Json<Input>) -> Result<Ht
     easy.url(&url).unwrap();
     easy.perform().unwrap();
     
-    assert_eq!(easy.response_code().unwrap(), 200);
+    // assert_eq!(easy.response_code().unwrap(), 200);
     let contents = easy.get_ref().0.as_slice();
     println!("{:?}", contents);
 
